@@ -2,7 +2,6 @@ package com.miguelruivo.flutter.plugin.countrycodes.country_codes
 
 import android.R
 import java.util.Locale
-import androidx.annotation.NonNull;
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -12,7 +11,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** CountryCodesPlugin */
 public class CountryCodesPlugin: FlutterPlugin, MethodCallHandler {
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "country_codes")
     channel.setMethodCallHandler(CountryCodesPlugin());
   }
@@ -34,7 +33,7 @@ public class CountryCodesPlugin: FlutterPlugin, MethodCallHandler {
     }
   }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+  override fun onMethodCall( call: MethodCall, result: Result) {
 
     when (call.method) {
         "getLocale" -> result.success(listOf(Locale.getDefault().language, Locale.getDefault().country, getLocalizedCountryNames(call.arguments as String?)))
@@ -57,6 +56,6 @@ public class CountryCodesPlugin: FlutterPlugin, MethodCallHandler {
     return localizedCountries
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
   }
 }
